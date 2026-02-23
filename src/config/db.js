@@ -12,17 +12,23 @@ const {
 
 
 
+// export const config = {
+//   port: process.env.PORT,
+//   jwtSecret: process.env.JWT_SECRET,
+//   MONGO_URI:`mongodb+srv://${NOSQL_DATASOURCE_USERNAME}:${NOSQL_DATASOURCE_PASSWORD}@${NOSQL_DATASOURCE_URL}/?authSource=${NOSQL_DATASOURCE_DATABASE}&authMechanism=SCRAM-SHA-1`
+// }
+
 export const config = {
   port: process.env.PORT,
   jwtSecret: process.env.JWT_SECRET,
-  MONGO_URI:`mongodb+srv://${NOSQL_DATASOURCE_USERNAME}:${NOSQL_DATASOURCE_PASSWORD}@${NOSQL_DATASOURCE_URL}/?authSource=${NOSQL_DATASOURCE_DATABASE}&authMechanism=SCRAM-SHA-1`
+  MONGO_URI: process.env.DATABASE_URL
 }
 
 
 export const connectDB = async ()=>{
   try {
     const conn =  await mongoose.connect(config.MONGO_URI,{
-      dbName: NOSQL_DATASOURCE_DATABASE
+      dbName: 'telemedicine'
     });
       // console.log("databaseurl",config.MONGO_URI);
       // console.log("Connected DB:", mongoose.connection.name);
@@ -31,6 +37,7 @@ export const connectDB = async ()=>{
   }
 
 }
+
 
 
 
